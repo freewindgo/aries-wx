@@ -1,0 +1,141 @@
+page{
+
+background: url('http://106.14.220.63/static/images/day_images/img0.jpg');
+  background-position:center;
+  background-size:100%;
+  
+}
+.weui-footer{color:#999;font-size:14px;text-align:center}.weui-footer_fixed-bottom{position:fixed;bottom:.52em;left:0;right:0}.weui-footer__links{font-size:0}.weui-footer__link{display:inline-block;vertical-align:top;margin:0 .62em;position:relative;font-size:14px;color:#586c94}.weui-footer__link:before{content:" ";position:absolute;left:0;top:0;width:1px;bottom:0;border-left:1rpx solid #c7c7c7;color:#c7c7c7;left:-.65em;top:.36em;bottom:.36em}.weui-footer__link:first-child:before{display:none}.weui-footer__text{padding:0 .34em;font-size:12px}
+.myfooter{
+  position: fixed;
+  transform: translateX(-50%);
+  margin-left: 50%;
+  bottom: 20rpx;
+  color: #ccc;
+  
+}
+input{
+  color:#fff;
+  padding: 0 !important;
+  font-size: 1rem;
+  border-bottom: 1px solid #ddd;
+
+}
+.login-btn{
+  margin-top: 60rpx !important;
+  background-color: transparent !important;
+  width: 40%;
+  margin: 0 auto;
+  border-bottom: 1px solid #aaa;
+
+  color: #fff !important;
+  border-radius: 265rpx;
+  
+
+}
+
+.wrapper {
+  width: 100%;
+  height: 400rpx;
+
+  position: absolute;
+}
+
+.loginform {
+  height: 400rpx;
+  position: relative;
+  top: 200rpx;
+}
+
+#owl-login {
+  width: 400rpx;
+  height: 200rpx;
+  position: absolute;
+  top: -182rpx;
+  left: 50%;
+  margin-left: -200rpx;
+}
+
+.head {
+  width: 400rpx;
+  height: 200rpx;
+}
+
+.hand {
+  width: 68rpx;
+  height: 68rpx;
+  border-radius: 80rpx;
+  background-color: #472d20;
+  transform: scaleY(0.6);
+  transition: 0.3s ease-out;
+  position: absolute;
+  left: 25rpx;
+  bottom: -16rpx;
+}
+
+.hand-r {
+  left: 315rpx;
+}
+
+.arms {
+  top: 120rpx;
+  position: absolute;
+  width: 100%;
+  height: 80rpx;
+  overflow: hidden;
+}
+
+.arm {
+  width: 80rpx;
+  height: 130rpx;
+  position: absolute;
+  left: 40rpx;
+  top: 80rpx;
+  transition: 0.3s ease-out;
+  transform: rotate(-50deg);
+}
+
+.arm-r {
+  transform: rotate(20deg) scaleX(-1);
+  left: 290rpx;
+}
+
+.hand-password {
+  transform: translateX(95rpx) translateY(-30rpx) scale(0.7);
+}
+
+.hand-r-password {
+  transform: translateX(-90rpx) translateY(-30rpx) scale(0.7);
+}
+
+.arm-password {
+  transform: translateY(-80rpx) translateX(80rpx);
+}
+
+.arm-r-password {
+  transform: translateY(-80rpx) translateX(-72rpx) scaleX(-1);
+}
+
+.control-group {
+  width: 700rpx;
+  height: 400rpx;
+  margin: 0 auto;
+  padding: 20rpx;
+ 
+  border-top: 4rpx solid rgba(71, 45, 32,0.3);
+}
+
+.control {
+  width: 75%;
+  height: 80rpx;
+  margin: 20rpx auto;
+  padding: 15rpx;
+  font-size: 40rpx;
+ 
+  
+}
+
+
+button {
+  margin-top: 40rpx;
+}
