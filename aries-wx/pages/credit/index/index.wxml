@@ -1,0 +1,33 @@
+<!--index.wxml-->
+<!--TODO：1、样式调整  2、银行卡背景图  3、新增按钮  4、优化加载处的显示按钮-->
+<view class="search">  
+  <view class="search-bar">  
+    <view class="search-wrap">  
+        <icon type="search" size="16" class="icon-search" />  
+        <input type="text" placeholder="请输入卡名称" class="search-input" name="searchValue" bindinput="bindSearchInput" value="{{searchValue}}" />  
+    </view>  
+    <view class="search-cancel" bindtap="bindSearch">搜索</view>  
+  </view>  
+  <view class="search-result">  
+    <scroll-view scroll-y="true" bindscrolltolower="searchScrollLower">  
+
+      <view class="result-item"  wx:for="{{dataList}}" wx:key="unique"  data-data="{{item}}" >  
+        <view id="{{item.id}}" class="result-container" bindtap='bindToEdit'>
+          <view><image class="bank-icon" src="../../../images/bank/icon_bank_{{item.bankId}}.png"></image></view>
+          <view>
+            <view class="cardName">{{item.cardName}}</view>
+            <view class="cardInfoContent">
+              <view class="cardInfo">账单日:{{item.billDay}}日</view>
+              <view class="cardInfo">还款日:{{item.payDay}}日</view>
+              <view class="cardInfo">额度:{{item.creditLimit/100}}</view>
+            </view>
+          </view>
+        </view>
+      </view>  
+
+      <view class="loading" hidden="{{!searchLoading}}" bindtap='searchScrollLower'>加载更多数据...</view>  
+      <view class="loading complete" hidden="{{!searchLoadingComplete}}">没有更多数据啦！</view>  
+    </scroll-view>    
+  </view>  
+</view>  
+

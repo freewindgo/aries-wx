@@ -1,2 +1,65 @@
 <!--pages/record/edit/edit.wxml-->
-<text>pages/record/edit/edit.wxml</text>
+<!--TODO：1、样式调整  -->
+<view class='container'>
+  <view class = "head">
+    <view><button bindtap='bindBackTo'>返回</button></view>
+  </view>
+  <view class="main-body">
+    <form bindsubmit="formSave">
+      <view wx:if="{{isPay}}">
+        <image src="../../../images/consume/is_pay_1.png"></image>
+      </view>
+
+      <!--卡片-->
+      <picker name="cardIndex" value="{{cardIndex}}" bindchange="bindCardChange" range="{{cardArray}}" range-key="{{'cardName'}}">
+        <view class="input-container">
+          <view class="input-title">卡片</view>
+          <view class="input-new">{{cardArray[cardIndex].cardName}}</view>
+        </view>
+      </picker>
+      <view class="hs20"></view>
+
+      <!--时间-->
+      <picker name="payTime" mode="date" value="{{payTime}}" start="{{today}}" end="2099-01-01" bindchange="bindDateChange">
+        <view class="input-container">
+          <view class="input-title">时间</view>
+          <input  disabled="true" class="input-new" value="{{payTime}}" />
+        </view>
+      </picker>
+      <view class="hs20"></view>
+
+      <!--类型-->
+      <view class="input-container">
+        <view class="input-title">类型</view>
+          <radio-group name="type" bindchange="bindRadioChange">
+            <label wx:for-items="{{types}}" wx:key="{{types.id}}" data-data="{{item}}">
+              <radio value="{{item.id}}" checked="{{type == item.id ? true : false}}"/>{{item.name}}
+            </label>
+          </radio-group>
+      </view>
+      <view class="hs20"></view>
+
+      <!--周期-->
+      <block wx:if="{{isShowSheep}}">
+        <view class="input-container">
+          <view class="input-title">免息期</view>
+          <input name="sheepCycle" disabled="true" class="input-new"  placeholder="自动计算" value="{{sheepCycle}}" />
+        </view>
+        <view class="hs20"></view>
+      </block>
+
+      <!--金额-->
+      <view class="input-container">
+        <view class="input-title">金额</view>
+        <input id="bill" name="bill" type="number" maxlength="8" class="input-new" bindinput="bindLimitInput" placeholder="金额是多少" value="{{bill}}" />
+      </view>
+      <view class="hs20"></view>
+      
+      <!--保存-->
+      <button class="btn-new" hover-class="btn-new-hover" form-type="submit" loading="{{loadingStatus}}">保存</button>
+      <view class="hs20"></view>
+    </form>
+  </view>
+
+</view>
+

@@ -1,1 +1,47 @@
 /* pages/credit/edit/edit.wxss */
+.input-container{
+  display: flex;
+  flex-direction:row;
+}
+
+.input-title {
+  box-sizing: border-box;
+  width: 20%;
+  height: 72rpx;
+  padding: 10rpx 10rpx;
+}
+
+.input-new {
+  box-sizing: border-box;
+  border: 2rpx solid #ddd;
+  width: 80%;
+  height: 72rpx;
+  line-height: 72rpx;
+  padding: 0rpx 10rpx;
+}
+
+
+.btn-new {
+  background-color: #F4606C;
+  border-radius: 0;
+  height: 80rpx;
+  line-height: 80rpx;
+  font-size: 35rpx;
+  color: #fff;
+}
+
+.btn-new-hover {
+  background-color: #ECAD9E;
+}
+
+.head{
+  height:100rpx;
+  display: flex;
+  flex-direction:row;
+}
+
+.main-body {
+  margin: 10rpx;
+  font-size: 35rpx;
+  width:80%;
+}

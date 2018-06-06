@@ -1,13 +1,37 @@
 <!--index.wxml-->
+<!--TODO： 2、登陆按钮授权 3、样式调整 4、点击图表跳转-->
 <view class="container">
-  <view class="userinfo">
-    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
-    <block wx:else>
-      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-    </block>
+  <view class="summary">
+    <view>
+      用卡建议
+      <view wx:if="{{adviceDay == -1}}">
+        <view>您还没有添加任何信用卡，快来添加一张吧</view>
+        <view class="iconfont icon-add1" bindtap='addCreditCard'></view>
+      </view>
+      <view wx:else>
+        <view>建议使用{{adviceCard}}</view>
+        <view>{{adviceDay}}天</view>
+      </view>
+    </view>
+    <view>
+      概览
+      <view><button>快捷登陆</button></view>
+      <view>
+        <view class="summary-total-container">
+          <view class="iconfont icon-card"></view>
+          <view>:{{cardTotal}}张</view>
+        </view>
+        <view class="summary-total-container">
+          <view class="iconfont icon-record"></view>
+          <view>:{{recordTotal}}条</view>
+        </view>
+      </view>
+    </view>
   </view>
-  <view class="usermotto">
-    <text class="user-motto">{{motto}}</text>
+
+  <view class="charts">
+    <view>{{chartData.title}}</view>
+    <canvas class="canvas" canvas-id="columnCanvas" bindtouchstart="touchHandler"></canvas>
   </view>
+
 </view>

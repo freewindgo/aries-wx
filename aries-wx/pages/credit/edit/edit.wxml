@@ -1,2 +1,106 @@
 <!--pages/credit/edit/edit.wxml-->
-<text>pages/credit/edit/edit.wxml</text>
+<!--TODO：1、样式调整  5、编辑数据获取  7、银行选择器改用多列 -->
+<view class='container'>
+  <view class = "head">
+    <view><button bindtap='bindBackTo'>返回</button></view>
+  </view>
+  <view class="main-body">
+    <form bindsubmit="formSave">
+      <!--银行-->
+      <picker name="bankId" value="{{bankIndex}}" bindchange="bindBankChange" range="{{bankArray}}" range-key="{{'name'}}">
+        <view class="input-container">
+          <view class="input-title">银行</view>
+          <view class="input-new">{{bankArray[bankIndex].name}}</view>
+        </view>
+      </picker>
+      <view class="hs20"></view>
+
+      <!--卡号,最多4位-->
+      <view class="input-container">
+        <view class="input-title">卡号</view>
+        <input name="cardNo" class="input-new" type="number" maxlength="4" placeholder="仅需卡号后四位标识" value="{{cardNo}}" bindinput="bindCardNoInput" />
+      </view>
+      <view class="hs20"></view>
+
+      <!--名称-->
+      <view class="input-container">
+        <view class="input-title">名称</view>
+        <input name="cardName" class="input-new" maxlength="15" placeholder="卡片名称" value="{{cardName}}" />
+      </view>
+      <view class="hs20"></view>
+
+      <!--卡等级-->
+      <picker name="cardLevel" value="{{levelIndex}}" bindchange="bindLevelChange" range="{{levelArray}}">
+        <view class="input-container">
+          <view class="input-title">等级</view>
+          <view class="input-new">{{levelArray[levelIndex]}}</view>
+        </view>
+      </picker>
+      <view class="hs20"></view>
+
+      <!--卡额度-->
+      <view class="input-container">
+        <view class="input-title">额度</view>
+        <input id="creditLimit" name="creditLimit" type="number" maxlength="8" class="input-new" bindinput="bindLimitInput" placeholder="信贷额度有多少" value="{{creditLimit}}" />
+      </view>
+      <view class="hs20"></view>
+
+      <!--卡临时额度-->
+      <view class="input-container">
+        <view class="input-title">临额</view>
+        <input id="creditTempLimit" name="creditTempLimit" type="number" maxlength="8" class="input-new" bindinput="bindLimitInput" placeholder="临时额度有多少" value="{{creditTempLimit}}" />
+      </view>
+      <view class="hs20"></view>
+
+      <!--卡其他额度-->
+      <view class="input-container">
+        <view class="input-title">其他</view>
+         <input id="creditOtherLimit" name="creditOtherLimit" type="number" maxlength="8" class="input-new" bindinput="bindLimitInput" placeholder="其他额度有多少" value="{{creditOtherLimit}}" />
+      </view>
+      <view class="hs20"></view>
+
+      <!--卡总计额度，由以上三项计算-->
+      <view class="input-container">
+        <view class="input-title">总额</view>
+        <input name="creditTotalLimit" disabled="true" class="input-new" placeholder="由以上三项计算得到" value="{{creditTotalLimit}}" />
+      </view>
+      <view class="hs20"></view>
+
+      <!--到期日-->
+      <picker name="expireDay" mode="date" value="{{expireDay}}" start="2018-01-01" end="2099-01-01" fields="month" bindchange="bindDateChange">
+        <view class="input-container">
+          <view class="input-title">到期日</view>
+          <input  disabled="true" class="input-new" value="{{expireDay == '-1' ? '不限': expireDay}}" />
+        </view>
+      </picker>
+      <view class="hs20"></view>
+
+      <!--账单日-->
+      <view class="input-container">
+        <view class="input-title">账单日</view>
+        <input id="billDay" name="billDay" type="number" maxlength="2" class="input-new" bindblur="bindDayBlur" placeholder="每月几号是账单日" value="{{billDay}}" />
+      </view>
+      <view class="hs20"></view>
+
+      <!--还款日-->
+      <view class="input-container">
+        <view class="input-title">还款日</view>
+        <input id="payDay" name="payDay" type="number" maxlength="2" class="input-new" bindblur="bindDayBlur" placeholder="每月几号是还款日" value="{{payDay}}" />
+      </view>
+      <view class="hs20"></view>
+
+      <!--免息周期，由以上两项计算-->
+      <view class="input-container">
+        <view class="input-title">免息期</view>
+        <input name="billCycle" disabled="true" class="input-new"  placeholder="由以上两项计算得到" value="{{billCycle}}" />
+      </view>
+      <view class="hs20"></view>
+
+      
+      <!--保存-->
+      <button class="btn-new" hover-class="btn-new-hover" form-type="submit" loading="{{loadingStatus}}">保存</button>
+      <view class="hs20"></view>
+    </form>
+  </view>
+
+</view>

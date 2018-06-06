@@ -2,20 +2,43 @@
   "pages":[
     "pages/login/login",
     "pages/index/index",
-    "pages/record/record",
     "pages/user/edit/edit",
-    "pages/user/show/show",
+    "pages/user/index/index",
     "pages/credit/edit/edit",
-    "pages/credit/list/list",
+    "pages/credit/index/index",
     "pages/record/edit/edit",
-    "pages/record/list/list",
-    "pages/statistic/statistic",
+    "pages/record/index/index",
+    "pages/statistic/index/index",
     "pages/logs/logs"
   ],
   "window":{
     "backgroundTextStyle":"light",
-    "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "WeChat",
-    "navigationBarTextStyle":"black"
+    "navigationBarBackgroundColor": "#F4606C",
+    "navigationBarTitleText": "羊毛记",
+    "navigationBarTextStyle":"white",
+    "enablePullDownRefresh": true
+  },
+  "tabBar": {
+    "color": "#626567",
+    "selectedColor": "#2A8CE5",
+    "backgroundColor": "#FBFBFB",
+    "borderStyle": "white",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "images/index.png",
+        "selectedIconPath": "images/index_click.png"
+      },
+      {
+        "pagePath": "pages/record/index/index",
+        "iconPath": "images/record.png",
+        "selectedIconPath": "images/record_click.png"
+      },
+      {
+        "pagePath": "pages/user/index/index",
+        "iconPath": "images/user.png",
+        "selectedIconPath": "images/user_click.png"
+      }
+    ]
   }
 }

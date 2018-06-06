@@ -4,7 +4,7 @@
 		"ignore": []
 	},
 	"setting": {
-		"urlCheck": true,
+		"urlCheck": false,
 		"es6": true,
 		"postcss": true,
 		"minified": true,
@@ -33,13 +33,36 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": -1,
+			"current": 4,
 			"list": [
 				{
 					"id": -1,
 					"name": "login",
 					"pathName": "pages/login/login",
 					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "index",
+					"pathName": "pages/index/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "addCreditCard",
+					"pathName": "pages/credit/edit/edit",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "creditIndex",
+					"pathName": "pages/credit/index/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "addRecord",
+					"pathName": "pages/record/edit/edit"
 				}
 			]
 		}
