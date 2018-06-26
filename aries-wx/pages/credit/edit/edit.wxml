@@ -1,9 +1,9 @@
 <!--pages/credit/edit/edit.wxml-->
-<!--TODO：1、样式调整  5、编辑数据获取  7、银行选择器改用多列 -->
+<!--TODO：1、样式调整  7、银行选择器改用多列 -->
 <view class='container'>
-  <view class = "head">
-    <view><button bindtap='bindBackTo'>返回</button></view>
-  </view>
+  <!--<view class = "head">
+    <view><button class="back-btn" hover-class='back-btn-hover' bindtap='bindBackTo'>返回</button></view>
+  </view>-->
   <view class="main-body">
     <form bindsubmit="formSave">
       <!--银行-->

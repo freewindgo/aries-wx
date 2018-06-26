@@ -2,7 +2,6 @@
   "pages":[
     "pages/login/login",
     "pages/index/index",
-    "pages/user/edit/edit",
     "pages/user/index/index",
     "pages/credit/edit/edit",
     "pages/credit/index/index",

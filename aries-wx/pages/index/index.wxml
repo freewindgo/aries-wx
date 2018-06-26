@@ -1,21 +1,20 @@
 <!--index.wxml-->
-<!--TODO： 2、登陆按钮授权 3、样式调整 4、点击图表跳转-->
+<!--TODO： 2、登陆按钮授权 3、样式调整-->
 <view class="container">
   <view class="summary">
-    <view>
+    <view class="part1">
       用卡建议
       <view wx:if="{{adviceDay == -1}}">
-        <view>您还没有添加任何信用卡，快来添加一张吧</view>
-        <view class="iconfont icon-add1" bindtap='addCreditCard'></view>
+        <view>您还没有添加任何卡片<view class="iconfont icon-add1" bindtap='addCreditCard'></view></view>
       </view>
       <view wx:else>
         <view>建议使用{{adviceCard}}</view>
         <view>{{adviceDay}}天</view>
       </view>
     </view>
-    <view>
+    <view class="part2">
       概览
-      <view><button>快捷登陆</button></view>
+      <view><button class="auth-btn" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">快捷登陆</button></view>
       <view>
         <view class="summary-total-container">
           <view class="iconfont icon-card"></view>
@@ -30,7 +29,7 @@
   </view>
 
   <view class="charts">
-    <view>{{chartData.title}}</view>
+    <view class="title">{{chartData.title}}</view>
     <canvas class="canvas" canvas-id="columnCanvas" bindtouchstart="touchHandler"></canvas>
   </view>
 

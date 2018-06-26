@@ -7,7 +7,7 @@ Page({
     dataList: [], //放置返回数据的数组  
     isFromSearch: true,   // 用于判断dataList数组是不是空数组，默认true，空的数组  
     start: 0,   // 设置加载的第几次，默认是第一次  
-    size: 15,      //返回数据的个数  
+    size: 1000,      //返回数据的个数,此处不分页，默认为1000
     searchLoading: false, //"上拉加载"的变量，默认false，隐藏  
     searchLoadingComplete: false  //“没有数据”的变量，默认false，隐藏  
   },
@@ -37,11 +37,22 @@ Page({
       console.log(data)
       if (data){
         let resultList = []
-        that.data.isFromSearch ? resultList = data : resultList = that.data.dataList.concat(data)
+        that.data.isFromSearch ? resultList = data : resultList = that.data.dataList.concat(data);
+
         that.setData({
           dataList:resultList,
           searchLoading: true
         })
+        
+        //第一页查询如果数据长度小于size，则显示没有数据
+        if (resultList.length < that.data.size) {
+          that.setData({
+            dataList: resultList,
+            searchLoadingComplete: true, //把“没有数据”设为true，显示  
+            searchLoading: false  //把"上拉加载"的变量设为false，隐藏  
+          })
+        }
+
       }else{
         that.setData({
           searchLoadingComplete: true, //把“没有数据”设为true，显示  
@@ -84,6 +95,7 @@ Page({
     }
   },
 
+  //编辑
   bindToEdit : function(e){
     let that = this
     let creditId = e.currentTarget.id
@@ -120,6 +132,50 @@ Page({
 
     }
 
+  },
+
+  //删除
+  bindToDel : function(e){
+    let that = this
+    let creditId = e.currentTarget.id
+
+    wx.showModal({
+      title: '删除确认',
+      content: '确认删除吗？',
+      success: function (res) {
+        if (res.confirm) {
+          //调用接口查询
+          app.request('/credit/deleteCreditCard?id='+creditId, 'GET', null).then((res) => {
+            console.log("delete credit success")
+          }).catch((errMsg) => {
+            console.log(errMsg)
+          })
+
+          //页面数据删除
+          let dataList = that.data.dataList
+          for (let index in dataList) {
+            if (dataList[index].id == creditId) {
+              dataList.splice(index, 1)
+              break
+            }
+          }
+
+          that.setData({
+            dataList: dataList
+          })
+
+        }
+      }
+    })
+
+
+  },
+
+  //新增
+  bindAdd: function(e){
+    wx.navigateTo({
+      url: "../edit/edit"
+    })
   },
 
   //页面加载

@@ -1,1 +1,51 @@
 /* pages/user/index/index.wxss */
+
+.list {
+  border-top: 1px solid #eee;
+  padding-top: 40rpx;
+  margin-top: 40rpx;
+  line-height: 50rpx;
+  width:250rpx;
+}
+
+
+.top-bgimage {
+  background:#5e81bf;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100%;
+  height: 340rpx;
+  width: 100%;
+}
+
+.info-container{
+  display: flex;
+  flex-direction:row;
+  height: 120rpx; 
+  justify-content: space-between;
+  align-items: center;
+}
+
+.goto-icon{
+  height: 80rpx;
+  width: 80rpx;
+}
+
+.userinfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 60rpx;
+}
+
+.userinfo-avatar {
+  width: 128rpx;
+  height: 128rpx;
+  margin: 20rpx;
+  border-radius: 50%;
+}
+
+.userinfo-nickname {
+  color: #fff;
+  font-size: 32rpx;
+}

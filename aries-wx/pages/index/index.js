@@ -1,7 +1,9 @@
 //index.js
 //获取应用实例
 const app = getApp()
-var util = require('../..//utils/util.js')
+const util = require('../..//utils/util.js')
+const charts = require('../../utils/wxcharts.js')
+var columnChart = null
 
 Page({
   data: {
@@ -10,7 +12,7 @@ Page({
     cardTotal: 0,
     recordTotal: 0,
     chartData: {
-      title: '近三月数据统计',
+      title: '近三月数据统计(点击查看更多数据)',
       categories: [],
       consume: {
         data: [0, 0, 0],
@@ -41,7 +43,7 @@ Page({
         wx.hideLoading()
       })
     } else {
-      console.log(userToken)
+      //console.log(userToken)
       that.getSummaryData()
       that.getChartData()
       wx.hideLoading()
@@ -49,6 +51,7 @@ Page({
 
   },
 
+  //获取页面上半部分统计数据
   getSummaryData: function () {
     var that = this
     app.request('/credit/summaryInfo?userId=' + wx.getStorageSync('userToken'), 'GET', null).then((res) => {
@@ -67,6 +70,7 @@ Page({
     app.globalData.isCreditCardChange = false
   },
 
+  //获取图表数据
   getChartData: function () {
     var that = this
     var chartData = that.data.chartData
@@ -78,10 +82,19 @@ Page({
     app.request('/consume/getConsumeStatsForm', 'GET', param).then((res) => {
       if (res && res.data) {
         var chartDatas = res.data
-        for (var i = 0; i < chartDatas.lens; i++) {
-          chartData.consume.data[i] = chartDatas[chartDatas.lens - i].bill
-          chartData.cash.data[i] = chartDatas[chartDatas.lens - i].sheep
+        var months = chartData.categories
+        for(var i =0; i < months.length;i++){
+          for (var j = 0; j < chartDatas.length; j++){
+            if (chartDatas[j].month == months[i]){
+              //此处转成万
+              chartData.consume.data[i] = chartDatas[j].bill/100
+              chartData.cash.data[i] = chartDatas[j].sheep/100
+            }
+          }
         }
+        that.setData({
+          chartData:chartData
+        })
       }
     }).catch((errMsg) => {
       console.log(errMsg)//错误提示信息
@@ -93,10 +106,8 @@ Page({
    */
   onReady: function (e) {
     var that = this
-    var charts = require('../../utils/wxcharts.js')
-    var columnChart = null
+
     var chartData = that.data.chartData
-    console.log(chartData)
     var windowWidth = 320
     try {
       var res = wx.getSystemInfoSync()
@@ -110,16 +121,16 @@ Page({
       animation: true,
       categories: chartData.categories,
       series: [{
-        name: '账单(万)',
+        name: '账单',
         data: chartData.consume.data,
         format: function (val, name) {
-          return val.toFixed(2)
+          return val.toFixed(0)
         }
       }, {
-        name: '羊(万)',
+        name: '羊',
         data: chartData.cash.data,
         format: function (val, name) {
-          return val.toFixed(2)
+          return val.toFixed(0)
         }
       }],
       yAxis: {
@@ -137,14 +148,13 @@ Page({
     })
   },
 
+  //点击图表跳转到统计列表
   touchHandler: function (e) {
-    var index = columnChart.getCurrentDataIndex(e)
-    if (index > -1 && index < chartData.sub.length) {
-      //TODO：跳转到相应月份的查询记录上
-      console.log("11111")
-    }
+    let that = this
+    wx.navigateTo({
+      url: '../statistic/index/index'
+    })
   },
-
 
   addCreditCard: function () {
     wx.navigateTo({
@@ -155,11 +165,22 @@ Page({
 
 
   onShow: function (e) {
-    var that = this
+    let that = this
+
     if (app.globalData.isCreditCardChange) {
       that.getSummaryData()
+      if (app.globalData.isConsumeInfoChange) {
+        that.getChartData()
+        app.globalData.isConsumeInfoChange = false
+      }
       app.globalData.isCreditCardChange = false
+    } else if (app.globalData.isConsumeInfoChange){
+      that.getChartData()
+      that.getSummaryData()
+      app.globalData.isConsumeInfoChange = false
     }
+
+    
   }
 
 

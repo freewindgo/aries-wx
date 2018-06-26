@@ -1,1 +1,132 @@
 /* pages/statistic/index/index.wxss */
+
+page{  
+  display: flex;  
+  flex-direction: column;  
+  height: 100%;  
+}  
+  
+/*搜索*/  
+.search{  
+  flex: auto;  
+  display: flex;  
+  flex-direction: column;  
+  background: #fff;  
+}  
+.search-bar{  
+  flex: none;  
+  display: flex;  
+  align-items: center;  
+  justify-content: space-between;  
+  padding: 20rpx;  
+  background: #f4f4f4;  
+}  
+.search-wrap{  
+  position: relative;  
+  flex: auto;  
+  display: flex;  
+  align-items: center;  
+  height: 80rpx;  
+  padding: 0 20rpx;  
+  background: #fff;  
+  border-radius: 6rpx;  
+  margin-left:50rpx;
+}  
+.search-wrap .icon-search{  
+  margin-right: 10rpx;  
+}  
+.search-wrap .search-input{  
+  flex: auto;  
+  font-size: 28rpx;  
+}  
+.search-cancel{  
+  padding: 0 20rpx;  
+  font-size: 28rpx;  
+}
+
+  
+/*搜索结果*/  
+.search-result{  
+  flex: auto;  
+  position: relative;  
+}  
+.search-result scroll-view{  
+  position: absolute;  
+  bottom: 0;  
+  left: 0;  
+  right: 0;  
+  top: 0;  
+}  
+.result-item{  
+  position: relative;  
+  padding: 5rpx 10rpx;  
+  overflow: hidden;  
+  border-bottom: 2rpx solid #e5e5e5;  
+}  
+
+.result-item .result-container{
+  display: flex;
+  flex-direction:row;
+  height: 120rpx; 
+}
+   
+
+.result-item .record-icon{ 
+  width: 40rpx;
+  height:40rpx;
+  transform:rotate(-40deg);
+} 
+
+
+.result-item .infos{ 
+  overflow: hidden;  
+  text-overflow: ellipsis;  
+  white-space: nowrap;  
+  line-height: 36rpx;   
+  margin-bottom: 4rpx;  
+  color: #000; 
+  padding-bottom: 10rpx
+}
+
+
+.result-item .part1{  
+  width:30%;
+  display:flex;
+  align-items:center;
+  font-size:37rpx;
+  justify-content:center;
+
+}
+
+.result-item .part2{  
+  width:35%;
+  display: flex;
+  flex-direction:row; 
+  justify-content:center;
+  align-items:center;
+}
+
+.result-item .part3{  
+  width:35%;
+  display: flex;
+  flex-direction:row; 
+  justify-content:center;
+  align-items:center;
+}
+
+.loading{  
+  padding: 10rpx;  
+  text-align: center;  
+}  
+
+.loading:before{  
+  display: inline-block;  
+  margin-right: 5rpx;  
+  vertical-align: middle;  
+  content: '';  
+  width: 40rpx;  
+  height: 40rpx;  
+}  
+.loading.complete:before{  
+  display: none;  
+}  

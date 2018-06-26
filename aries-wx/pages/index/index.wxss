@@ -8,15 +8,20 @@
 
 .charts {
     width: 95%;
-    border: 1px dashed rgb(244, 96, 108);
+    border: 2px dashed rgb(244, 96, 108);
     padding-top: 10px;
+}
+
+.charts .title{
+  font-size:35rpx;
+  display:flex;
+  justify-content:center;
 }
 
 
 .summary {
     width: 95%;
     height: 200px;
-    border: 1px dashed rgb(244, 96, 108);
     display: flex;
     flex-direction:row;
 }
@@ -25,6 +30,25 @@
     display: flex;
     flex-direction:row;
 }
+
+.auth-btn{
+  height:60rpx;
+  width:180rpx;
+  line-height:60rpx;
+  font-size:30rpx;
+  background:#F4606C;
+  color:#fff;
+
+}
+
+.part1{
+  width: 70%;
+}
+
+.part2{
+  width: 30%;
+}
+
 /*****icons******/
 .iconfont{
   color: #F4606C;

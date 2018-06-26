@@ -1,9 +1,9 @@
 <!--pages/record/edit/edit.wxml-->
 <!--TODO：1、样式调整  -->
 <view class='container'>
-  <view class = "head">
-    <view><button bindtap='bindBackTo'>返回</button></view>
-  </view>
+  <!--<view class = "head">
+    <button class="back-btn" hover-class='back-btn-hover' bindtap='bindBackTo'>返回</button>
+  </view> -->
   <view class="main-body">
     <form bindsubmit="formSave">
       <view wx:if="{{isPay}}">
@@ -14,7 +14,7 @@
       <picker name="cardIndex" value="{{cardIndex}}" bindchange="bindCardChange" range="{{cardArray}}" range-key="{{'cardName'}}">
         <view class="input-container">
           <view class="input-title">卡片</view>
-          <view class="input-new">{{cardArray[cardIndex].cardName}}</view>
+          <input  disabled="true" class="input-new" placeholder="选择一张卡片吧" value="{{cardArray[cardIndex].cardName}}" />
         </view>
       </picker>
       <view class="hs20"></view>
@@ -23,7 +23,7 @@
       <picker name="payTime" mode="date" value="{{payTime}}" start="{{today}}" end="2099-01-01" bindchange="bindDateChange">
         <view class="input-container">
           <view class="input-title">时间</view>
-          <input  disabled="true" class="input-new" value="{{payTime}}" />
+          <input  disabled="true" class="input-new" placeholder="时间是哪天" value="{{payTime}}" />
         </view>
       </picker>
       <view class="hs20"></view>

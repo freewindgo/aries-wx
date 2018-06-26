@@ -11,23 +11,23 @@ Page({
     /**以下为与存储相关数据**/
     id: '',
     cardArray: [],
-    cardIndex: 0,
+    cardIndex: '',
     today: util.formatTime(new Date),
-    type : 1,
+    type: 1,
     types: [
       {
-        id:1,
-        name:"还款",
+        id: 1,
+        name: "还款",
       },
       {
         id: 2,
         name: "领羊",
       },
     ],
-    isPay:false,
+    isPay: false,
     bill: '',
     payTime: '',
-    isShowSheep:false,
+    isShowSheep: false,
     sheepCycle: '',
   },
 
@@ -35,15 +35,17 @@ Page({
   bindCardChange: function (e) {
     var that = this
     var cardIndex = e.detail.value
-    console.log(cardIndex)
-
     that.setData({
       cardIndex: cardIndex
     })
 
-    var isShowSheep = that.data.isShowSheep
-    if(isShowSheep){
-      //todo:重新选择卡片后重新计算周期
+    let isShowSheep = that.data.isShowSheep
+    let payTime = that.data.payTime
+    if (isShowSheep && payTime != "") {
+      let sheepCycle = that.calSheepCycle(payTime, cardIndex)
+      that.setData({
+        sheepCycle: sheepCycle
+      })
     }
 
   },
@@ -51,21 +53,57 @@ Page({
   //日期选择
   bindDateChange: function (e) {
     var that = this
+    let payTime = e.detail.value
     that.setData({
       payTime: e.detail.value
     })
+
+    let cardIndex = that.data.cardIndex
+    let isShowSheep = that.data.isShowSheep
+    if (cardIndex != "" && isShowSheep) {
+      let sheepCycle = that.calSheepCycle(payTime, cardIndex)
+      that.setData({
+        sheepCycle: sheepCycle
+      })
+    }
   },
 
-  bindRadioChange: function (e){
+  //类型选择
+  bindRadioChange: function (e) {
     let that = this
-    let isShowSheep = false
-    if(e.detail.value == 2){
-      isShowSheep = true
+    if (e.detail.value == 2) {
+      let cardIndex = that.data.cardIndex
+      let payTime = that.data.payTime
+      let sheepCycle = ""
+      if(cardIndex != "" && payTime != ""){
+        sheepCycle = that.calSheepCycle(payTime, cardIndex)
+      }
+      that.setData({
+        isShowSheep: true,
+        sheepCycle: sheepCycle
+      })
+
+    } else {
+      that.setData({
+        isShowSheep: false,
+        sheepCycle: ''
+      })
     }
-    that.setData({
-      isShowSheep: isShowSheep
-    })
+
+
+
   },
+
+  //免息期计算
+  calSheepCycle: function(date,cardIndex){
+    let that = this
+    let today = new Date(date).getDate()
+    let card = that.data.cardArray[cardIndex]
+    let billDay = card.billDay
+    let billCycle = card.billCycle
+    return billDay - today >= 0 ? billCycle + billDay - today - 30 : billCycle + billDay - today;
+  },
+
   //返回
   bindBackTo: function (e) {
     wx.showModal({
@@ -94,12 +132,14 @@ Page({
     let payTime = e.detail.value.payTime
     let month = payTime.substring(0, payTime.lastIndexOf("-"))
 
-    let sheepCycle = e.detail.value.sheepCycle
+    let sheepCycle = e.detail.value.sheepCycle == '' ? -1 : e.detail.value.sheepCycle
     let type = e.detail.value.type
+    //是否已还，如果类型为1，默认为2，类型为2，则为-1
+    let isPay = type == 2 ? -1 : 2
 
     //金额项转为分
     let bill = e.detail.value.bill * 100
-  
+
     if (cardName == '') {
       checkResult = false
       wx.showToast({
@@ -148,6 +188,8 @@ Page({
         month: month,
         type: type,
         sheepCycle: sheepCycle,
+        isPay: isPay,
+        payTime: payTime
       }
 
       //调用接口存储
@@ -214,7 +256,7 @@ Page({
         }
       }
 
-  
+
     }
 
   }

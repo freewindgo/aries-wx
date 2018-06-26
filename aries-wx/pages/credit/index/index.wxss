@@ -30,6 +30,7 @@ page{
   padding: 0 20rpx;  
   background: #fff;  
   border-radius: 6rpx;  
+  margin-left:50rpx;
 }  
 .search-wrap .icon-search{  
   margin-right: 10rpx;  
@@ -41,6 +42,11 @@ page{
 .search-cancel{  
   padding: 0 20rpx;  
   font-size: 28rpx;  
+}
+
+.add-icon{
+  height:50rpx;
+  width:50rpx
 }  
   
 /*搜索结果*/  
@@ -60,13 +66,12 @@ page{
   padding: 20rpx;  
   overflow: hidden;  
   border-bottom: 2rpx solid #e5e5e5;  
-  height: 150rpx;
-  align-items:center;
 }  
 
 .result-item .result-container{
   display: flex;
   flex-direction:row; 
+  justify-content:space-between;
 }
    
 .result-item .bank-icon{ 
@@ -97,6 +102,11 @@ page{
   padding-right: 20rpx  
 }
 
+.result-item .del-icon{  
+  height:50rpx;
+  width:50rpx
+}
+
 .loading{  
   padding: 10rpx;  
   text-align: center;  
@@ -109,9 +119,6 @@ page{
   content: '';  
   width: 40rpx;  
   height: 40rpx;  
-  background: green;  
-  background-size: contain;  
-  animation: rotate 1s linear infinite;  
 }  
 .loading.complete:before{  
   display: none;  

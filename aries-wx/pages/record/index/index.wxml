@@ -1,2 +1,47 @@
-<!--pages/record/index/index.wxml-->
-<text>pages/record/index/index.wxml</text>
+<!--index.wxml-->
+<!--TODO：1、样式调整  2、加载数据的动态图标-->
+<view class="search">  
+  <view class="search-bar">
+    <view bindtap="bindAdd"><image class="add-icon" src="../../../images/common/add4.png"></image></view>    
+    <view class="search-wrap">  
+        <icon type="search" size="16" class="icon-search" />  
+        <input type="text" placeholder="请输入记录时间,eg:2018 2018-05" class="search-input" name="searchValue" bindinput="bindSearchInput" value="{{searchValue}}" />  
+    </view>  
+    <view class="search-cancel" bindtap="bindSearch">搜索</view>  
+  </view>  
+  <view class="search-result">  
+    <scroll-view scroll-y="true" bindscrolltolower="searchScrollLower">  
+
+      <view class="result-item"  wx:for="{{dataList}}" wx:key="id"  >  
+        <view class="result-container" style="background:{{monthColor[item.month%4][1]}}">
+          <view class="part1">
+            <view>{{item.payTime}}</view>
+          </view>
+          <view id="{{item.id}}"  bindtap='bindToEdit' class="part2">
+            <view class="info-content">
+              <view class="infos"><image class="record-icon" src="../../../images/consume/type_{{item.type}}.png"></image></view>
+              <view class="infos">{{item.bill/100}}</view>
+            </view>
+            <view class="card-name">{{item.cardName}}</view>
+          </view>
+          <view class="part3">
+            <block wx:if="{{item.type == 1 && item.isPay == 2}}">
+              <button id="{{item.id}}" class="pay-button" hover-class='pay-button-hover' bindtap='bindToPay'>还啦</button>
+            </block>
+            <block wx:if="{{item.type == 1 && item.isPay == 1}}">
+              <image class="pay-icon" src="../../../images/consume/is_pay1.png"></image>
+            </block>
+          </view>
+          <view class="part4">
+            <view id="{{item.id}}" bindtap='bindToDel'><image class="operate-icon" src="../../../images/common/delete.png"></image></view>
+          </view>  
+        </view>
+        
+      </view>
+       
+      <view class="loading" hidden="{{!searchLoading}}" bindtap='searchScrollLower'>加载更多数据...</view>  
+      <view class="loading complete" hidden="{{!searchLoadingComplete}}">没有更多数据啦！</view>  
+    </scroll-view>    
+  </view>  
+</view>  
+

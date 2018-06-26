@@ -20,6 +20,18 @@
   padding: 0rpx 10rpx;
 }
 
+.back-btn{
+  height:50rpx;
+  line-height:50rpx;
+  background-color:#F4606C;
+  font-size:35rpx;
+  color: #fff;
+  border-radius: 0;
+}
+
+.back-btn-hover{
+  background-color: #ECAD9E;
+}
 
 .btn-new {
   background-color: #F4606C;
@@ -35,9 +47,8 @@
 }
 
 .head{
-  height:100rpx;
-  display: flex;
-  flex-direction:row;
+  align-self:left;
+  padding:10rpx;
 }
 
 .main-body {

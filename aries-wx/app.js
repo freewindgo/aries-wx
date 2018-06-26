@@ -57,6 +57,8 @@ App({
     userInfo: null,
     isCreditCardChange: false,
     isConsumeInfoChange:false,
+    chartToRecord:false,
+    chartMonth:'',
   },
 
   request: function (url, method, data) {
@@ -78,6 +80,7 @@ App({
         method: requestMethod,
         header: { 'content-type': 'application/json' },
         success: function (res) {//服务器返回数据
+          console.log("app.js response:");
           console.log(res);
           if (res.data.code == 200) {
             resolve(res.data);
